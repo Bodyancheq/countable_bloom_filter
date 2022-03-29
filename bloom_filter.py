@@ -1,5 +1,4 @@
-# TODO подсчет fp rate
-# TODO подсчет оптимального k по формуле
+import math
 import re
 import random
 
@@ -25,9 +24,11 @@ words = re_pattern.findall(text)
 dictionary = set(words)
 
 n = len(dictionary)
-k = 3
-hashes = [hash_function(i) for i in range(k)]  # don't forget to % n it
+k = int((n * 5) / n * math.log(2))
+hashes = [hash_function(i) for i in range(k)]
 cbf = [0 for i in range(n * 5)]
+fp_rate = round(pow(1 - math.exp(-k * n / (5 * n)), k), 2)
+print(f"False positive rate is {fp_rate}")
 
 for word in dictionary:
     indexes = [hashes[i](word) % len(cbf) for i in range(k)]
