@@ -43,6 +43,11 @@ class CBF:
         else:
             print(f"No such word [{word}] in text")
 
+    def delete_word(self, word):
+        to_delete = [self.hashes[i](word) % self.n for i in range(self.k)]
+        for i in to_delete:
+            self.cbf[i] -= 1
+
 
 if __name__ == '__main__':
     re_pattern = re.compile(r"[\w’]+")
@@ -55,4 +60,6 @@ if __name__ == '__main__':
 
     my_cbf.check_word("aboba")
     my_cbf.add_word("aboba")
+    my_cbf.check_word("aboba")
+    my_cbf.delete_word("aboba")
     my_cbf.check_word("aboba")
