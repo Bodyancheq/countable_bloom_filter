@@ -53,6 +53,4 @@ if __name__ == '__main__':
     for word in words:
         my_cbf.add_word(word)
 
-    my_cbf.check_word("aboba")
-    my_cbf.add_word("aboba")
-    my_cbf.check_word("aboba")
+    print(*my_cbf.cbf)
